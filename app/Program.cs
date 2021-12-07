@@ -19,7 +19,11 @@ class AdventOfCode
 
         //Day 3
         //isSuccess = adventClass.adventThreePartOne();
-        isSuccess = adventClass.adventThreePartTwo();
+        //isSuccess = adventClass.adventThreePartTwo();
+
+        //Day 6
+        //isSuccess = adventClass.adventSixPartOne();
+        isSuccess = adventClass.adventSixPartTwo();
 
     }
 
@@ -32,7 +36,7 @@ class AdventOfCode
         bool isValid = false;
         LinkedList<int> values = new LinkedList<int>();
 
-        foreach (string line in System.IO.File.ReadLines(@"C:\Users\jacob\OneDrive\Desktop\AdventCode\app\texts\test.txt"))
+        foreach (string line in System.IO.File.ReadLines(@".\texts\test.txt"))
         {  
             position++;
             if(position>3){
@@ -61,7 +65,7 @@ class AdventOfCode
         int horizontal = 0;
         int final = 0;
 
-        foreach (string line in System.IO.File.ReadLines(@"C:\Users\jacob\OneDrive\Desktop\AdventCode\app\texts\day2.txt")){
+        foreach (string line in System.IO.File.ReadLines(@".\texts\day2.txt")){
             string[] words = line.Split(' ');
             if (words[0] == "forward"){
                 horizontal += int.Parse(words[1]);
@@ -84,7 +88,7 @@ class AdventOfCode
         int horizontal = 0;
         int final = 0;
 
-        foreach (string line in System.IO.File.ReadLines(@"C:\Users\jacob\OneDrive\Desktop\AdventCode\app\texts\day2.txt")){
+        foreach (string line in System.IO.File.ReadLines(@".\texts\day2.txt")){
             string[] words = line.Split(' ');
             if (words[0] == "forward"){
                 horizontal += int.Parse(words[1]);
@@ -108,7 +112,7 @@ class AdventOfCode
         int[] digitCount = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         int[] finalDigits = new int[12];
 
-        foreach (string line in System.IO.File.ReadLines(@"C:\Users\jacob\OneDrive\Desktop\AdventCode\app\texts\day3.txt")){
+        foreach (string line in System.IO.File.ReadLines(@".\texts\day3.txt")){
             char[] digitsInArray = new char[12];
             using (StringReader sr = new StringReader(line))
             {
@@ -168,7 +172,7 @@ class AdventOfCode
         int oxyGenRating;
         int scrubberRating;
 
-        foreach (string line in System.IO.File.ReadLines(@"C:\Users\jacob\OneDrive\Desktop\AdventCode\app\texts\day3.txt")){
+        foreach (string line in System.IO.File.ReadLines(@".\texts\day3.txt")){
             char[] digitsInArray = new char[12];
             using (StringReader sr = new StringReader(line))
             {
@@ -176,11 +180,138 @@ class AdventOfCode
                 sr.Read(digitsInArray, 0, 12);
             }
 
-            foreach (int i )
+            foreach (int i in digitsInArray){
+                
+            }
         }
 
 
 
         return true;
+    }
+
+    private bool adventSixPartOne(){
+        int totalDays = 80;
+        List<int> fishList = new List<int>();
+        int newFish = 0;
+
+        string[] startingFish = File.ReadAllLines(@".\texts\day6.txt");
+        string[] stringOfFish = startingFish[0].Split(',');
+        foreach (string age in stringOfFish){
+            fishList.Add(int.Parse(age));
+        }
+
+        Console.WriteLine("Value: {0}", fishList.Count);
+
+        for (int i = 0; i < totalDays; i++){
+            for(int j = 0; j < fishList.Count; j++){
+                if (fishList[j] == 0){
+                    fishList[j] = 6;
+                    newFish++;
+                } else {
+                    fishList[j]--;
+                }
+            }
+            for (int j = 0; j < newFish; j++){
+                fishList.Add(8);
+            }
+            newFish = 0;
+        }
+
+        Console.WriteLine("Value: {0}", fishList.Count);
+
+        //print list of fish
+        // foreach (int age in fishList){
+        //     Console.WriteLine("{0},", age);
+        // }
+
+        return true;
+    } 
+
+    private bool adventSixPartTwo(){
+
+        int totalDays = 256;
+        long totalFish = 0;
+
+        List<int> fishList = new List<int>();
+        List<int> fishList2 = new List<int>();
+        List<int> fishList3 = new List<int>();
+        List<int> fishList4 = new List<int>();
+        List<int> fishList5 = new List<int>();
+
+        int newFish = 0;
+
+        string[] startingFish = File.ReadAllLines(@".\texts\day6.txt");
+        string[] stringOfFish = startingFish[0].Split(',');
+        foreach (string age in stringOfFish){
+            fishList.Add(int.Parse(age));
+        }
+
+        Console.WriteLine("Value: {0}", fishList.Count);
+
+        for (int i = 0; i < totalDays; i++){
+            for(int j = 0; j < fishList.Count; j++){
+                if (fishList[j] == 0){
+                    fishList[j] = 6;
+                    newFish++;
+                } else {
+                    fishList[j]--;
+                }
+            }
+            for(int j = 0; j < fishList2.Count; j++){
+                if (fishList2[j] == 0){
+                    fishList2[j] = 6;
+                    newFish++;
+                } else {
+                    fishList2[j]--;
+                }
+            }
+            for(int j = 0; j < fishList3.Count; j++){
+                if (fishList3[j] == 0){
+                    fishList3[j] = 6;
+                    newFish++;
+                } else {
+                    fishList3[j]--;
+                }
+            }
+            for(int j = 0; j < fishList4.Count; j++){
+                if (fishList4[j] == 0){
+                    fishList4[j] = 6;
+                    newFish++;
+                } else {
+                    fishList4[j]--;
+                }`
+            }
+            for(int j = 0; j < fishList5.Count; j++){
+                if (fishList5[j] == 0){
+                    fishList5[j] = 6;
+                    newFish++;
+                } else {
+                    fishList5[j]--;
+                }
+            }
+
+
+            for (int j = 0; j < newFish; j++){
+                if (fishList.Count < (int.MaxValue/2)){
+                    fishList.Add(8);
+                }   else if (fishList2.Count < (int.MaxValue/2)) {
+                    fishList2.Add(8);
+                } else if (fishList3.Count < (int.MaxValue/2)){
+                    fishList3.Add(8);
+                } else if (fishList4.Count < (int.MaxValue/2)){
+                    fishList4.Add(8);
+                } else if (fishList5.Count < (int.MaxValue/2)){
+                    fishList5.Add(8);
+                }
+                
+            }
+            newFish = 0;
+        }
+
+        Console.WriteLine("Value: {0}", fishList.Count + fishList2.Count + fishList3.Count + fishList4.Count + fishList5.Count);
+
+        return true;
+
     }
 }
